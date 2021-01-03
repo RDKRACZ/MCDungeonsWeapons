@@ -38,7 +38,7 @@ public class Mcdw implements ModInitializer {
     public static final ItemGroup RANGED = FabricItemGroupBuilder.build(
             new Identifier(MOD_ID, "weapons/bows"),
             () -> new ItemStack(Bows.BOW_LONGBOW));
-    public static final ItemGroup ENCHANTMENTS = FabricItemGroupBuilder.create(
+    /*public static final ItemGroup ENCHANTMENTS = FabricItemGroupBuilder.create(
             new Identifier(MOD_ID, "enchants"))
             .icon(() -> new ItemStack(Items.ENCHANTED_BOOK))
             .appendItems(itemStacks -> {
@@ -116,9 +116,10 @@ public class Mcdw implements ModInitializer {
                 itemStacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(EnchantsRegistry.THUNDERING, 3)));
                 itemStacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(EnchantsRegistry.WEAKENING, 1)));
                 itemStacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(EnchantsRegistry.WEAKENING, 2)));
-                itemStacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(EnchantsRegistry.WEAKENING, 3)));
+                itemStacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(EnchantsRegistry.WEAKENING,
+                 3)));
             })
-            .build();
+            .build();*/
 
 
 

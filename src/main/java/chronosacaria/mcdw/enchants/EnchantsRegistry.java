@@ -1,98 +1,210 @@
 package chronosacaria.mcdw.enchants;
 
+import chronosacaria.mcdw.Mcdw;
+import chronosacaria.mcdw.api.EnchantmentSkeleton;
+import chronosacaria.mcdw.api.McdwEnchantmentBuilder;
 import chronosacaria.mcdw.enchants.enchantments.*;
+import com.google.common.collect.Sets;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.*;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+
+import java.util.function.Function;
 
 public class EnchantsRegistry {
-    public static Enchantment ANIMA_CONDUIT;
-    public static Enchantment CHAINS;
-    public static Enchantment COMMITTED;
-    public static Enchantment CRITICAL_HIT;
-    public static Enchantment ECHO;
-    public static Enchantment ENIGMA_RESONATOR;
-    public static Enchantment EXPLODING;
-    public static Enchantment FREEZING;
-    public static Enchantment GRAVITY;
-    public static Enchantment JUNGLE_POISON;
-    public static Enchantment LEECHING;
-    public static Enchantment POISON_CLOUD;
-    public static Enchantment RADIANCE;
-    public static Enchantment RAMPAGING;
-    public static Enchantment SHOCKWAVE;
-    public static Enchantment SMITING;
-    public static Enchantment SOUL_SIPHON;
-    public static Enchantment STUNNING;
-    public static Enchantment SWIRLING;
-    public static Enchantment THUNDERING;
-    public static Enchantment WEAKENING;
+    public static final String MODID = Mcdw.MOD_ID;
 
-    public static Enchantment ACCELERATE;
-    public static Enchantment BONUS_SHOT;
-    public static Enchantment CHARGE;
-    public static Enchantment FUSE_SHOT;
-    public static Enchantment REPLENISH;
-    public static Enchantment RICOCHET;
-    public static Enchantment TEMPO_THEFT;
+    private static Function<ItemStack,Boolean> isBowOrCrossBow = (stack)-> {
+        for(Class<?> clazz : Sets.<Class<?>>newHashSet(FishingRodItem.class, BowItem.class, CrossbowItem.class)) {
+            if(clazz.isInstance(stack.getItem())) return true;
+        }
+        return false;
+    };
 
-    public static void init() {
-        ANIMA_CONDUIT = new AnimaConduitEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        CRITICAL_HIT = new CriticalHitEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        CHAINS = new ChainsEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        COMMITTED = new CommittedEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        ECHO = new EchoEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        ENIGMA_RESONATOR = new EnigmaResonatorEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        EXPLODING = new ExplodingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        FREEZING = new FreezingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        GRAVITY = new GravityEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        JUNGLE_POISON = new JunglePoisonEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        LEECHING = new LeechingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        POISON_CLOUD = new PoisonCloudEnchantment(Enchantment.Rarity.COMMON, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        RADIANCE = new RadianceEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        RAMPAGING = new RampagingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        SHOCKWAVE = new ShockwaveEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        SMITING = new SmitingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        SOUL_SIPHON = new SoulSiphonEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        STUNNING = new StunningEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        SWIRLING = new SwirlingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        THUNDERING = new ThunderingEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        WEAKENING = new WeakeningEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final EnchantmentSkeleton ANIMA_CONDUIT = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("anima_conduit");
 
-        //ACCELERATE = new Accelerate(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                //new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        BONUS_SHOT = new BonusShotEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.CROSSBOW,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        CHARGE = new ChargeEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        FUSE_SHOT = new FuseShotEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        //REPLENISH = new ReplenishEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                //new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        RICOCHET = new RicochetEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
-        TEMPO_THEFT = new TempoTheftEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.BOW,
-                new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+    public static final EnchantmentSkeleton CHAINS = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("chains");
+
+    public static final EnchantmentSkeleton COMMITTED = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("committed");
+
+    public static final EnchantmentSkeleton CRITICAL_HIT = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("critical_hit");
+
+    public static final EnchantmentSkeleton ECHO = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("echo");
+
+    public static final EnchantmentSkeleton ENIGMA_RESONATOR = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("enigma_resonator");
+
+    public static final EnchantmentSkeleton EXPLODING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("exploding");
+
+    public static final EnchantmentSkeleton FREEZING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("freezing");
+
+    public static final EnchantmentSkeleton GRAVITY = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("gravity");
+
+    public static final EnchantmentSkeleton JUNGLE_POISON = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("jungle_poison");
+
+    public static final EnchantmentSkeleton LEECHING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("leeching");
+
+    public static final EnchantmentSkeleton POISON_CLOUD = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("poison_cloud");
+
+    public static final EnchantmentSkeleton RADIANCE = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("radiance");
+
+    public static final EnchantmentSkeleton RAMPAGING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("rampaging");
+
+    public static final EnchantmentSkeleton SHOCKWAVE = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("shockwave");
+
+    public static final EnchantmentSkeleton SMITING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("smiting");
+
+    public static final EnchantmentSkeleton SOUL_SIPHON = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("soul_siphon");
+
+    public static final EnchantmentSkeleton STUNNING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("stunning");
+
+    public static final EnchantmentSkeleton SWIRLING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("swirling");
+
+    public static final EnchantmentSkeleton THUNDERING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("thundering");
+
+    public static final EnchantmentSkeleton WEAKENING = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof SwordItem || itemstack.getItem() instanceof AxeItem;})
+            .build("weakening");
+
+    public static final EnchantmentSkeleton ACCELERATE = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("accelerate");
+
+    public static final EnchantmentSkeleton BONUS_SHOT = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("bonus_shot");
+
+    public static final EnchantmentSkeleton CHARGE = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("charge");
+
+    public static final EnchantmentSkeleton FUSE_SHOT = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("fuse_shot");
+
+    public static final EnchantmentSkeleton REPLENISH = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("replenish");
+
+    public static final EnchantmentSkeleton RICOCHET = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("ricochet");
+
+    public static final EnchantmentSkeleton TEMPO_THEFT = new McdwEnchantmentBuilder(Enchantment.Rarity.VERY_RARE,
+            EnchantmentTarget.WEAPON, EquipmentSlot.MAINHAND)
+            .maxlevel(3)
+            .isAcceptible((itemstack)->{return itemstack.getItem() instanceof BowItem || itemstack.getItem() instanceof CrossbowItem;})
+            .build("tempo_theft");
+
+    public static void init()
+    {
+        for(EnchantmentSkeleton e : new EnchantmentSkeleton[] {
+                ANIMA_CONDUIT, CHAINS, CRITICAL_HIT, ECHO, ENIGMA_RESONATOR, EXPLODING, FREEZING, GRAVITY,
+                JUNGLE_POISON, LEECHING, POISON_CLOUD, RADIANCE, RAMPAGING, SHOCKWAVE, SMITING, SOUL_SIPHON, STUNNING,
+                SWIRLING, THUNDERING, WEAKENING,
+
+                ACCELERATE, BONUS_SHOT, CHARGE, FUSE_SHOT, REPLENISH, RICOCHET, TEMPO_THEFT,
+        })
+        {
+            if(e.enabled())
+                Registry.register(Registry.ENCHANTMENT, new Identifier(MODID, e.regName()), e);
+        }
+
     }
 }
