@@ -59,6 +59,13 @@ public class McdwEnchantmentBuilder {
         return this;
     }
 
+    public McdwEnchantmentBuilder addExclusive(Enchantment enchantment)
+    {
+        this.mcdwenhant.exclusiveEnchantments.add(enchantment);
+        return this;
+    }
+
+
     public McdwEnchantmentBuilder isAcceptible(Function<ItemStack, Boolean> isAcceptible){
         this.mcdwenhant.isAcceptible = isAcceptible;
         return this;
