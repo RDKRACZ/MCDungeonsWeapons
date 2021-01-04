@@ -1,11 +1,20 @@
 package chronosacaria.mcdw.configs;
 
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.Comment;
 
 @Config(name="mcdw_enchants")
 public class McdwEnchantsConfig implements ConfigData {
+
+    static {
+        AutoConfig.register(McdwEnchantsConfig.class, JanksonConfigSerializer::new);
+    }
+    public static final McdwEnchantsConfig config = AutoConfig.getConfigHolder(McdwEnchantsConfig.class).getConfig();
+
+
     @Comment("Allow mixing for OP Enchantment Combinations?")
     public boolean enableOPMixing = false;
     @Comment("Can DamageBoost Enchantments combine with Leeching?")

@@ -6,7 +6,8 @@
     "AccessorItemTags",
     "CrossbowBonusShotEnchantmentMixin",
     "MixinEntity",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "events.OnBowArrowCreationEventMixin"
   ],
   "client": [
   ],
